@@ -6,7 +6,7 @@
 /*   By: xlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:53:32 by xlow              #+#    #+#             */
-/*   Updated: 2023/09/15 18:24:08 by xlow             ###   ########.fr       */
+/*   Updated: 2023/09/23 20:50:04 by xlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <assert.h>
+# include <string.h>
 
 typedef struct s_list
 {
@@ -66,5 +70,13 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int			ft_printf(const char *str, ...);
+//static void	checkplaceholder(const char *str, va_list *args, int *count);
+void		ft_putstr(char *str, int *count);
+void		ft_putint(int number, int *count);
+void		ft_putuint(unsigned int number, int *count);
+void		ft_puthex(void *ptr, int *count);
+void		ft_dectohex(unsigned int number, char *base, int *count);
+void		ft_ulldectohex(unsigned long long number, char *base, int *count);
 
 #endif
