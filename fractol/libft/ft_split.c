@@ -6,7 +6,7 @@
 /*   By: xlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:34:07 by xlow              #+#    #+#             */
-/*   Updated: 2023/10/18 14:41:11 by xlow             ###   ########.fr       */
+/*   Updated: 2023/09/24 00:56:04 by xlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,10 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	char *strings = NULL;
-//	char *s = "\0";
-//	char c = ' ';
-	// int i = 0;
-	// while (strings[i])
-	// {
-	// 	printf("word %i is %s\n", i, strings[i]);
-	// 	i++;
-	// }
-	// ft_freewords(strings, i);
-	printf("%s\n", ft_split(strings, ' ')[0]);
-}
+	char **str = ft_split("piece of shit", ' ');
+	printf("%s", str[0]);
+	free(str);
+	return (0);
+}*/

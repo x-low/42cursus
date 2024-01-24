@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 18:47:39 by xlow              #+#    #+#             */
-/*   Updated: 2023/10/13 20:27:28 by xlow             ###   ########.fr       */
+/*   Created: 2023/09/30 06:14:49 by xlow              #+#    #+#             */
+/*   Updated: 2023/10/22 14:13:29 by xlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 void	to_retrieve(int fd, char **storage, char **hold)
 {
 	char	*buffer;
 	int		rd;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, 1);
+	buffer = gnl_calloc(BUFFER_SIZE + 1, 1);
 	if (!buffer)
 		return ;
 	rd = 1;
@@ -30,9 +30,9 @@ void	to_retrieve(int fd, char **storage, char **hold)
 			return ;
 		}
 		buffer[rd] = 0;
-		*hold = ft_strdup(*storage);
+		*hold = gnl_strdup(*storage);
 		ft_free(storage, 0, 0);
-		*storage = ft_strjoin(*hold, buffer);
+		*storage = gnl_strjoin(*hold, buffer);
 		ft_free(hold, 0, 0);
 		if (is_there_nl(*storage))
 			break ;
@@ -50,7 +50,7 @@ char	*to_print(char *hold)
 		i++;
 	if (hold[i] == '\n')
 		i++;
-	res = ft_calloc(i + 1, 1);
+	res = gnl_calloc(i + 1, 1);
 	if (!res)
 		return (NULL);
 	i = 0;
@@ -78,7 +78,7 @@ char	*to_save(char *hold)
 		i++;
 	while (hold[j])
 		j++;
-	store = ft_calloc(j - i + 1, 1);
+	store = gnl_calloc(j - i + 1, 1);
 	if (!store)
 		return (NULL);
 	j = 0;
@@ -99,24 +99,24 @@ void	to_assign(char **storage, char *hold, char **res)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage = NULL;
+	static char	*storage[1024];
 	char		*hold;
 	char		*res;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 1024)
 		return (NULL);
-	hold = NULL;
-	res = NULL;
-	to_retrieve(fd, &storage, &hold);
-	if (storage && *storage)
+	hold = 0;
+	res = 0;
+	to_retrieve(fd, &storage[fd], &hold);
+	if (storage[fd] && *storage[fd])
 	{
-		hold = ft_strdup(storage);
-		ft_free(&storage, 0, 0);
-		to_assign(&storage, hold, &res);
+		hold = gnl_strdup(storage[fd]);
+		ft_free(&storage[fd], 0, 0);
+		to_assign(&storage[fd], hold, &res);
 	}
 	if (!res || !*res)
 	{
-		ft_free(&storage, &hold, &res);
+		ft_free(&storage[fd], &hold, &res);
 		return (NULL);
 	}
 	return (res);
