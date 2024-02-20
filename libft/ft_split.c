@@ -6,7 +6,7 @@
 /*   By: xlow <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:34:07 by xlow              #+#    #+#             */
-/*   Updated: 2023/10/18 14:41:11 by xlow             ###   ########.fr       */
+/*   Updated: 2024/02/20 16:21:04 by xlow             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**ft_split(char const *s, char c)
 	res[i] = NULL;
 	return (res);
 }
-
+/*
 int	main(void)
 {
 	char *strings = NULL;
@@ -80,4 +80,4 @@ int	main(void)
 	// }
 	// ft_freewords(strings, i);
 	printf("%s\n", ft_split(strings, ' ')[0]);
-}
+}*/
